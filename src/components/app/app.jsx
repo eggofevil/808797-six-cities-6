@@ -22,7 +22,6 @@ const App = () => {
           <Favorites />
         </Route>
         <Route exact path="/offer:id" render={(serviceProps) => (<Room state={serviceProps.location.state} />)} />
-        <Route exact path="/test" component={TestComponent} />
       </Switch>
     </BrowserRouter>
   );
