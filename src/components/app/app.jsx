@@ -6,6 +6,8 @@ import SignIn from '../sign-in/sign-in';
 import Favorites from '../favorites/favorites';
 import Room from '../room/room';
 
+import TestComponent from '../test-component/test-component';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -20,6 +22,7 @@ const App = () => {
           <Favorites />
         </Route>
         <Route exact path="/offer:id" render={(serviceProps) => (<Room state={serviceProps.location.state} />)} />
+        <Route exact path="/test" component={TestComponent} />
       </Switch>
     </BrowserRouter>
   );
