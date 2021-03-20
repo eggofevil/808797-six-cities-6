@@ -1,7 +1,8 @@
 {
-  "name": "test-project",
+  "name": "six-cities",
   "version": "1.0.0",
-  "description": "project for testing various things",
+  "private": true,
+  "description": "Личный проект «Шесть городов» от HTML Academy",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",

@@ -6,8 +6,6 @@ import SignIn from '../sign-in/sign-in';
 import Favorites from '../favorites/favorites';
 import Room from '../room/room';
 
-import TestComponent from '../test-component/test-component';
-
 const App = () => {
   return (
     <BrowserRouter>
