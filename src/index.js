@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import rootReducer from './store/reducers/root-reducer';
 import App from './components/app/app';
-// import {createAPI} from './services/api';
 import {getOffers} from './store/api-actions';
-
-// const api = createAPI();
-// const store = createStore(rootReducer);
 
 const store = createStore(
   rootReducer,
