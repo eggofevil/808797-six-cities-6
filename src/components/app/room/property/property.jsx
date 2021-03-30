@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import ReviewsList from '../reviews-list/reviews-list';
+import ReviewsList from './reviews-list/reviews-list';
 // import ReviewForm from '../review-form/review-form';
 
 import {RATING_BAR_DIVISION} from '../../../../const.js';
@@ -89,8 +89,8 @@ const Property = ({offer}) => {
             </div>
           </div>
           <section className="property__reviews reviews">
-            {/* <ExtendedReviewsList offerId={offer.id} />
-            <ExtendedReviewForm offerId={offer.id} /> */}
+            <ReviewsList />
+            {/* <ExtendedReviewForm offerId={offer.id} /> */}
           </section>
         </div>
       </div>

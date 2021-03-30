@@ -8,7 +8,7 @@ import Property from './property/property.jsx';
 import OffersList from '../shared/offers-list/offers-list.jsx';
 import CityMap from '../shared/city-map/city-map.jsx';
 
-import {getNearbyOffers} from '../../../store/api-actions.js';
+import {getNearbyOffers, getOfferReviews} from '../../../store/api-actions.js';
 import {selectNearbyOffers} from '../../../store/reducers/data/selectors.js';
 
 import offerPropTypes from '../../prop-types/offer.proptypes.js';
@@ -17,6 +17,7 @@ const Room = ({state: {offer}, nearbyOffers}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNearbyOffers(offer.id));
+    dispatch(getOfferReviews(offer.id));
   }, [offer]);
   window.scroll(0, 0);
   return (
