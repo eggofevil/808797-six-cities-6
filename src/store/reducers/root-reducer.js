@@ -1,16 +1,13 @@
 import {combineReducers} from 'redux';
-import appData from './app-data/app-data';
-import appLogic from './app-logic/app-logic';
-import user from './user/user';
+import logic from './logic/logic.js';
+import data from './data/data.js';
 
 export const NameSpace = {
   DATA: `DATA`,
-  LOGIC: `LOGIC`,
-  USER: `USER`
+  LOGIC: `LOGIC`
 };
 
 export default combineReducers({
-  [NameSpace.DATA]: appData,
-  [NameSpace.LOGIC]: appLogic,
-  [NameSpace.USER]: user
+  [NameSpace.DATA]: data,
+  [NameSpace.LOGIC]: logic
 });

@@ -1,30 +1,16 @@
-import {setOffers, setCity} from './reducers/actions';
-import {createAPI} from '../services/api';
+import {setOffers, setCurrentCityAndCityOffers, setNearbyOffers} from './reducers/data/action-creator.js';
 
-const api = createAPI();
-
-export const getOffers = () => (dispatch, _getState) => (
+export const getHotels = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
     .then(({data}) => {
-      const cityName = data[0].city.name;
-      dispatch(setCity(cityName));
       dispatch(setOffers(data));
+      dispatch(setCurrentCityAndCityOffers(data[0].city.name));
     })
 );
 
-export const getReviews = (offerId, setReviews) => {
-  return api.get(`/comments/${offerId}`)
+export const getNearbyOffers = (offerId) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${offerId}/nearby`)
     .then(({data}) => {
-      setReviews(data);
-    });
-};
-
-/*
-export const getReviews = (offerId) => (
-  api.get(`/comments/${offerId}`)
-    .then(({data}) => {
-      console.log(data);
-      return (data);
+      dispatch(setNearbyOffers(data));
     })
 );
-*/
