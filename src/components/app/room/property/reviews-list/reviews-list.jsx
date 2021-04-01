@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Review from './review/review.jsx';
-import {selectOfferReviews} from '../../../../../store/reducers/data/selectors.js';
+import {selectSortedOfferReviews} from '../../../../../store/reducers/data/selectors.js';
 
 import reviewPropTypes from '../../../../prop-types/review.proptypes.js';
 
@@ -25,7 +25,7 @@ const ReviewsList = ({reviews}) => {
   );
 };
 
-const mapStateToProps = ({DATA}) => ({reviews: selectOfferReviews(DATA)});
+const mapStateToProps = (state) => ({reviews: selectSortedOfferReviews(state)});
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,

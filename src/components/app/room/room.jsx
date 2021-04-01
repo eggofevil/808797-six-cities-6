@@ -9,7 +9,6 @@ import OffersList from '../shared/offers-list/offers-list.jsx';
 import CityMap from '../shared/city-map/city-map.jsx';
 
 import {getNearbyOffers, getOfferReviews} from '../../../store/api-actions.js';
-import {selectNearbyOffers} from '../../../store/reducers/data/selectors.js';
 
 import offerPropTypes from '../../prop-types/offer.proptypes.js';
 
@@ -64,7 +63,7 @@ const Room = ({state: {offer}, nearbyOffers}) => {
   );
 };
 
-const mapStateToProps = ({DATA}) => ({nearbyOffers: selectNearbyOffers(DATA)});
+const mapStateToProps = ({DATA}) => ({nearbyOffers: DATA.nearbyOffers});
 
 Room.propTypes = {
   state: PropTypes.shape({

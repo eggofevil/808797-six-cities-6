@@ -9,8 +9,7 @@ import SortingTab from './sorting-tab/sorting-tab.jsx';
 const SortingPane = ({sortingType}) => {
   const [sortingPaneState, setSortingPaneState] = useState(0);
   const handleClick = () => {
-    const state = sortingPaneState ? 0 : 1;
-    setSortingPaneState(state);
+    setSortingPaneState(sortingPaneState ? 0 : 1);
   };
   const ulClassName = `places__options places__options--custom${sortingPaneState ? ` places__options--opened` : ``}`;
   return (

@@ -6,7 +6,7 @@ import SortingPane from './sorting-pane/sorting-pane.jsx';
 import SortedOffersList from './sorted-offers-list/sorted-offers-list.jsx';
 import CityMap from '../../shared/city-map/city-map.jsx';
 
-import {selectCityOffers, selectCurrentCityName} from '../../../../store/reducers/data/selectors.js';
+import {selectCityOffers} from '../../../../store/reducers/data/selectors.js';
 
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
@@ -49,9 +49,9 @@ Cities.propTypes = {
   cityOffers: PropTypes.arrayOf(offerPropTypes).isRequired
 };
 
-const mapStateToProps = ({DATA}) => ({
-  currentCityName: selectCurrentCityName(DATA),
-  cityOffers: selectCityOffers(DATA)
+const mapStateToProps = (state) => ({
+  currentCityName: state.DATA.currentCityName,
+  cityOffers: selectCityOffers(state)
 });
 
 export {Cities};
