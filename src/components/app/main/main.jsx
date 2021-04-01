@@ -2,7 +2,7 @@ import React from 'react';
 
 import UserPane from '../shared/user-pane/user-pane.jsx';
 import CitiesPane from './cities-pane/cities-pane.jsx';
-import OffersContainer from './offers-container/offers-container.jsx';
+import Cities from './cities/cities.jsx';
 
 const Main = () => {
   return (
@@ -28,7 +28,7 @@ const Main = () => {
       <main className="page__main page__main--index page__main--index-empty">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesPane />
-        <OffersContainer />
+        <Cities />
       </main>
     </div>
   );

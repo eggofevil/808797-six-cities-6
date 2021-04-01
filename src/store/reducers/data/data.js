@@ -1,10 +1,9 @@
 import {extend} from '../../../utils';
-import {SET_OFFERS, SET_CURRENT_CITY_AND_CITY_OFFERS, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS} from './actions.js';
+import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS} from './actions.js';
 
 const initialState = {
   offers: [],
   currentCityName: `Amsterdam`,
-  currentCityOffers: [],
   nearbyOffers: [],
   offerReviews: []
 };
@@ -15,10 +14,9 @@ const data = (state = initialState, action) => {
     return extend(state, {
       offers: action.payload
     });
-  case SET_CURRENT_CITY_AND_CITY_OFFERS:
+  case SET_CURRENT_CITY:
     return extend(state, {
       currentCityName: action.payload,
-      currentCityOffers: state.offers.filter((offer) => offer.city.name === action.payload)
     });
   case SET_NEARBY_OFFERS:
     return extend(state, {
