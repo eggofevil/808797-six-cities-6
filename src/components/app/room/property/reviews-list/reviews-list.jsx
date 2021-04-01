@@ -12,9 +12,14 @@ const ReviewsList = ({reviews}) => {
     <>
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
-        {reviews.map((review, i) => (
-          <Review key={`review-${i}`} review={review} />
-        ))}
+        {reviews.map((review, i) => {
+          if (i > 9) {
+            return null;
+          }
+          return (
+            <Review key={`review-${i}`} review={review} />
+          );
+        })}
       </ul>
     </>
   );

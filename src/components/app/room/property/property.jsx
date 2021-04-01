@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import ReviewsList from './reviews-list/reviews-list.jsx';
 import ReviewForm from './review-form/review-form.jsx';
@@ -6,8 +7,9 @@ import ReviewForm from './review-form/review-form.jsx';
 import {RATING_BAR_DIVISION} from '../../../../const.js';
 
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
+import authStatePropTypes from '../../../prop-types/authstate.proptypes.js';
 
-const Property = ({offer}) => {
+const Property = ({offer, authState}) => {
   const hostAvatarClassName = offer.host[`is_pro`] ?
     `property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper` :
     `property__avatar-wrapper user__avatar-wrapper`;
@@ -90,7 +92,11 @@ const Property = ({offer}) => {
           </div>
           <section className="property__reviews reviews">
             <ReviewsList />
-            <ReviewForm offerId={offer.id} />
+            {authState ?
+              <ReviewForm offerId={offer.id} />
+              :
+              null
+            }
           </section>
         </div>
       </div>
@@ -100,6 +106,10 @@ const Property = ({offer}) => {
 
 Property.propTypes = {
   offer: offerPropTypes.isRequired,
+  authState: authStatePropTypes
 };
 
-export default Property;
+const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
+
+export {Property};
+export default connect(mapStateToProps)(Property);

@@ -1,5 +1,6 @@
 export const extend = (a, b) => Object.assign({}, a, b);
 export const sortArrayByKeyValue = (arr, key, direction) => {
+  arr = arr.slice();
   switch (direction) {
   case `ascending`:
     return arr.sort((a, b) => {

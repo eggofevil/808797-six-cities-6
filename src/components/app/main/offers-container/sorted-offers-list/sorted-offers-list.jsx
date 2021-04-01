@@ -12,11 +12,11 @@ const SortedOffersList = ({currentCityOffers, sortingType}) => {
   const sortedCurrentCityOffers = (() => {
     switch (sortingType) {
     case SortingTypes.PRICE_HIGH_TO_LOW:
-      return sortArrayByKeyValue(currentCityOffers.slice(), `price`, `descending`);
+      return sortArrayByKeyValue(currentCityOffers, `price`, `descending`);
     case SortingTypes.PRICE_LOW_TO_HIGH:
-      return sortArrayByKeyValue(currentCityOffers.slice(), `price`, `ascending`);
+      return sortArrayByKeyValue(currentCityOffers, `price`, `ascending`);
     case SortingTypes.RATING:
-      return sortArrayByKeyValue(currentCityOffers.slice(), `rating`, `descending`);
+      return sortArrayByKeyValue(currentCityOffers, `rating`, `descending`);
     default:
       return currentCityOffers;
     }
