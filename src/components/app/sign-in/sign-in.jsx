@@ -7,12 +7,12 @@ import MainPageLink from '../shared/main-page-link/main-page-link.jsx';
 import UserPane from '../shared/user-pane/user-pane.jsx';
 import SignInForm from './sign-in-form/sign-in-form.jsx';
 
-import authorisationStatePropTypes from '../../prop-types/authorisation-state.proptypes.js';
+import authStatePropTypes from '../../prop-types/authstate.proptypes.js';
 
-const SignIn = ({authorisationState}) => {
+const SignIn = ({authState}) => {
   return (
     <>
-      {authorisationState ?
+      {authState ?
         <Redirect to="/" />
         :
         <div className="page page--gray page--login">
@@ -53,10 +53,10 @@ const SignIn = ({authorisationState}) => {
   );
 };
 
-const mapStateToProps = ({LOGIC}) => ({authorisationState: LOGIC.authorisationState});
+const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
 
 SignIn.propTypes = {
-  authorisationState: authorisationStatePropTypes
+  authState: authStatePropTypes
 };
 
 export {SignIn};

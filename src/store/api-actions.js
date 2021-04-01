@@ -1,5 +1,5 @@
 import {setOffers, setCurrentCityAndCityOffers, setNearbyOffers, setOfferReviews} from './reducers/data/action-creator.js';
-import {setAuthorisationState} from './reducers/logic/action-creator.js';
+import {setAuthState} from './reducers/logic/action-creator.js';
 
 export const getHotels = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
@@ -26,7 +26,7 @@ export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
 export const postUserData = (credentials) => (dispatch, _getState, api) => (
   api.post(`/login`, credentials)
     .then((data) => {
-      dispatch(setAuthorisationState(data.data));
+      dispatch(setAuthState(data.data));
     }, (error) => {
       console.log(error);
     })

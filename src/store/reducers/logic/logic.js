@@ -1,11 +1,11 @@
 import {extend} from '../../../utils';
-import {SET_SORTING_TYPE, SET_ACTIVE_CARD, SET_AUTHORISATION_STATE} from './actions.js';
+import {SET_SORTING_TYPE, SET_ACTIVE_CARD, SET_AUTH_STATE} from './actions.js';
 import {SortingTypes} from '../../../const';
 
 const initialState = {
   sortingType: SortingTypes.POPULARITY,
   activeCard: null,
-  authorisationState: null
+  authState: null
 };
 
 const logic = (state = initialState, action) => {
@@ -18,9 +18,9 @@ const logic = (state = initialState, action) => {
     return extend(state, {
       activeCard: action.payload
     });
-  case SET_AUTHORISATION_STATE:
+  case SET_AUTH_STATE:
     return extend(state, {
-      authorisationState: action.payload
+      authState: action.payload
     });
   default:
     return state;
