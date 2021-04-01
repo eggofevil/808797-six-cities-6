@@ -89,7 +89,7 @@ const Property = ({offer}) => {
             </div>
           </div>
           <section className="property__reviews reviews">
-            {/* <ReviewsList /> */}
+            <ReviewsList />
             {/* <ExtendedReviewForm offerId={offer.id} /> */}
           </section>
         </div>
