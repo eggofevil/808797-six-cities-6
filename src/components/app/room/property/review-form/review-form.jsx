@@ -7,10 +7,6 @@ const ReviewForm = ({offerId}) => {
     review: ``
   });
 
-  function evaluateForm() {
-    return state.rating.length && state.review.length >= 50 ? false : true;
-  }
-
   function handleChange(evt) {
     evt.persist();
     setState((previousState) => {
@@ -20,6 +16,11 @@ const ReviewForm = ({offerId}) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(state);
+  }
+
+  function evaluateForm() {
+    return state.rating.length && state.review.length >= 50 ? false : true;
   }
 
   return (

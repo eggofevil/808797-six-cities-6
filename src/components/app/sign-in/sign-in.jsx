@@ -1,0 +1,45 @@
+import React from 'react';
+
+import MainPageLink from '../shared/main-page-link/main-page-link.jsx';
+import UserPane from '../shared/user-pane/user-pane.jsx';
+import SignInForm from './sign-in-form/sign-in-form.jsx';
+
+const SignIn = () => {
+  return (
+    <div className="page page--gray page--login">
+      <header className="header">
+        <div className="container">
+          <div className="header__wrapper">
+            <div className="header__left">
+              <MainPageLink />
+            </div>
+            <nav className="header__nav">
+              <ul className="header__nav-list">
+                <li className="header__nav-item user">
+                  <UserPane />
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <main className="page__main page__main--login">
+        <div className="page__login-container container">
+          <section className="login">
+            <h1 className="login__title">Sign in</h1>
+            <SignInForm />
+          </section>
+          <section className="locations locations--login locations--current">
+            <div className="locations__item">
+              <a className="locations__item-link" href="#">
+                <span>Amsterdam</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default SignIn;
