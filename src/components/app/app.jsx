@@ -6,7 +6,7 @@ import Room from './room/room.jsx';
 import SignIn from './sign-in/sign-in.jsx';
 import Favorites from './favorites/favorites.jsx';
 
-import TestComponent from './test-component/test-component-2.jsx';
+import TestComponent from './test-component/test-component-3.jsx';
 
 const App = () => {
   return (
