@@ -4,16 +4,17 @@ import {connect} from 'react-redux';
 
 import CityTab from './city-tab/city-tab.jsx';
 
+import {CityNames} from '../../../../const.js';
+
 const CitiesPane = ({currentCityName}) => {
-  const cityNames = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
   const elementClassName = `locations__item-link tabs__item`;
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {cityNames.map((name, id) => {
+          {Object.values(CityNames).map((value, id) => {
             return (
-              <CityTab key={`city-${id}`} cityName={name} tabClassName={name === currentCityName ? elementClassName + ` tabs__item--active` : elementClassName} />
+              <CityTab key={`city-${id}`} cityName={value} tabClassName={value === currentCityName ? elementClassName + ` tabs__item--active` : elementClassName} />
             );
           })}
         </ul>

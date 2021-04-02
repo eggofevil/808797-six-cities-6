@@ -1,4 +1,12 @@
-const RATING_BAR_DIVISION = 20;
+const CityNames = {
+  PARIS: `Paris`,
+  COLOGNE: `Cologne`,
+  BRUSSELS: `Brussels`,
+  AMSTERDAM: `Amsterdam`,
+  HAMBURG: `Hamburg`,
+  DUSSELDORF: `Dusseldorf`
+};
+
 const SortingTypes = {
   POPULARITY: `Popular`,
   PRICE_LOW_TO_HIGH: `Price: low to high`,
@@ -6,4 +14,6 @@ const SortingTypes = {
   RATING: `Top rated first`
 };
 
-export {RATING_BAR_DIVISION, SortingTypes};
+const RATING_BAR_DIVISION = 20;
+
+export {CityNames, SortingTypes, RATING_BAR_DIVISION};
