@@ -29,7 +29,21 @@ export const postUserData = (credentials) => (dispatch, _getState, api) => (
   api.post(`/login`, credentials)
     .then((data) => {
       dispatch(setAuthState(data.data));
+      return false;
+    })
+);
+
+export const postReview = (offerId, requestBody, setFormState) => (dispatch, _getState, api) => (
+  api.post(`/comments/${offerId}`)
+    .then((data) => {
+      console.log(data);
     }, (error) => {
       console.log(error);
+    }, setFormState({disabled: false}))
+    /*
+    .catch((error) => {
+      console.log(error);
+      setFormState({disabled: false});
     })
+    */
 );
