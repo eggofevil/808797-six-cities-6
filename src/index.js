@@ -5,6 +5,8 @@ import {createAPI} from './services/api.js';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import {Provider as AlertProvider} from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 
 import rootReducer from './store/reducers/root-reducer.js';
 import App from './components/app/app.jsx';
@@ -24,8 +26,10 @@ const store = createStore(
 store.dispatch(getHotels());
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <AlertProvider template={AlertTemplate}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </AlertProvider>,
   document.getElementById(`root`)
 );

@@ -33,17 +33,13 @@ export const postUserData = (credentials) => (dispatch, _getState, api) => (
     })
 );
 
-export const postReview = (offerId, requestBody, setFormState) => (dispatch, _getState, api) => (
-  api.post(`/comments/${offerId}`)
-    .then((data) => {
-      console.log(data);
+export const postReview = (offerId, requestBody, onResponse) => (dispatch, _getState, api) => (
+  api.post(`/comments/${offerId}`, requestBody)
+    .then(() => {
+      const message = `Yor review is posted! Thank you for your review!`;
+      onResponse(message);
     }, (error) => {
-      console.log(error);
-    }, setFormState({disabled: false}))
-    /*
-    .catch((error) => {
-      console.log(error);
-      setFormState({disabled: false});
+      const message = `Something went wrong, please try again later... ${error}`;
+      onResponse(message);
     })
-    */
 );

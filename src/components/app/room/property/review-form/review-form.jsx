@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
+import {useAlert} from 'react-alert';
 
 import {postReview} from '../../../../../store/api-actions.js';
 
@@ -14,11 +15,10 @@ const ReviewForm = ({offerId}) => {
     rating: ``
   });
 
-  console.log(userInput);
-
   const dispatch = useDispatch();
+  const alert = useAlert();
 
-  const submitDisabled = userInput.rating && (userInput.comment.length >= 5) && (userInput.comment.length <= 300) ?
+  const submitDisabled = userInput.rating && (userInput.comment.length >= 50) && (userInput.comment.length <= 300) ?
     false : true;
 
   function handleChange(evt) {
@@ -41,10 +41,15 @@ const ReviewForm = ({offerId}) => {
   }
 
   function handleSubmit(evt) {
+    function onResponse(message) {
+      alert.show(message);
+      setFormState({disabled: false});
+    }
+
     evt.preventDefault();
     setFormState({disabled: true});
     resetForm();
-    dispatch(postReview(offerId, userInput, setFormState));
+    dispatch(postReview(offerId, userInput, onResponse));
   }
 
   return (
