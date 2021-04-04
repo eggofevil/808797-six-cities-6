@@ -1,42 +1,29 @@
 import React from 'react';
+import {connect, useDispatch} from 'react-redux';
+import PropTypes from 'prop-types';
 
-import UserPane from '../shared/user-pane/user-pane.jsx';
-import MainPageLink from '../shared/main-page-link/main-page-link.jsx';
+import FavoritesLocations from './favorites-locations/favorites-locations.jsx';
+import FavoritesEmpty from './favorites-empty/favorites-empty.jsx';
+import {getFavorites} from '../../../store/api-actions.js';
 
-const Favorites = () => {
+import offerPropTypes from '../../prop-types/offer.proptypes.js';
+
+const Favorites = ({favorites}) => {
+  const dispatch = useDispatch();
+  dispatch(getFavorites);
+  const Element = favorites.length ? FavoritesLocations : FavoritesEmpty;
   return (
-    <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <MainPageLink />
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <UserPane />
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-      <main className="page__main page__main--favorites">
-        <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-
-          </section>
-        </div>
-      </main>
-      <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width={64} height={33} />
-        </a>
-      </footer>
-    </div>
+    <>
+      <Element />
+    </>
   );
 };
 
-export default Favorites;
+const mapStateToProps = ({DATA}) => ({favorites: DATA.favorites});
+
+Favorites.propTypes = {
+  favorites: PropTypes.arrayOf(offerPropTypes)
+};
+
+export {Favorites};
+export default connect(mapStateToProps)(Favorites);

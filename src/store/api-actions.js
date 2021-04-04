@@ -1,4 +1,4 @@
-import {setOffers, setCurrentCity, setNearbyOffers, setOfferReviews} from './reducers/data/action-creator.js';
+import {setOffers, setCurrentCity, setNearbyOffers, setOfferReviews, setFavorites} from './reducers/data/action-creator.js';
 import {setAuthState} from './reducers/logic/action-creator.js';
 
 const FIRST_OFFER_INDEX = 0;
@@ -22,6 +22,15 @@ export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
   api.get(`/comments/${offerId}`)
     .then(({data}) => {
       dispatch(setOfferReviews(data));
+    })
+);
+
+export const getFavorites = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => {
+      dispatch(setFavorites(data));
+    }, (error) => {
+      console.log(error);
     })
 );
 

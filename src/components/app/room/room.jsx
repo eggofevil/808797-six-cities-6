@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import UserPane from '../shared/user-pane/user-pane.jsx';
-import MainPageLink from '../shared/main-page-link/main-page-link.jsx';
+import Header from '../shared/header/header.jsx';
 import Property from './property/property.jsx';
 import OffersList from '../shared/offers-list/offers-list.jsx';
 import CityMap from '../shared/city-map/city-map.jsx';
@@ -21,22 +20,7 @@ const Room = ({state: {offer}, nearbyOffers}) => {
   window.scroll(0, 0);
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <MainPageLink />
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <UserPane />
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <Property offer={offer} />

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import authStatePropTypes from '../../../prop-types/authstate.proptypes.js';
+import authStatePropTypes from '../../../../prop-types/authstate.proptypes.js';
 
 const UserPane = ({authState}) => {
   return (
