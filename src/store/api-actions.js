@@ -28,16 +28,18 @@ export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
 export const getFavorites = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
     .then(({data}) => {
+      console.log(data);
       dispatch(setFavorites(data));
     }, (error) => {
       console.log(error);
     })
 );
 
-export const postUserData = (credentials) => (dispatch, _getState, api) => (
+export const authUser = (credentials) => (dispatch, _getState, api) => (
   api.post(`/login`, credentials)
     .then((data) => {
       dispatch(setAuthState(data.data));
+      dispatch(getFavorites());
       return false;
     })
 );

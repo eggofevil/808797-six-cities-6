@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 
-import {postUserData} from '../../../../store/api-actions.js';
+import {authUser} from '../../../../store/api-actions.js';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const SignInForm = () => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    dispatch(postUserData(state));
+    dispatch(authUser(state));
   }
 
   return (
