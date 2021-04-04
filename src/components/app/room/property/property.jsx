@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import ReviewsList from './reviews-list/reviews-list.jsx';
 import ReviewForm from './review-form/review-form.jsx';
+import BookmarkButton from '../../shared/bookmark-button/bookmark-button.jsx';
 
 import {RATING_BAR_DIVISION} from '../../../../const.js';
 
@@ -35,12 +36,7 @@ const Property = ({offer, authState}) => {
             <h1 className="property__name">
               {offer.title}
             </h1>
-            <button className="property__bookmark-button button" type="button">
-              <svg className="property__bookmark-icon" width={31} height={33}>
-                <use xlinkHref="#icon-bookmark" />
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <BookmarkButton location="property" />
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">

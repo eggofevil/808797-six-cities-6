@@ -34,7 +34,7 @@ function Header({mainPageLinkDisabled}) {
 }
 
 Header.propTypes = {
-  mainPageLinkDisabled: PropTypes.bool.isRequired
+  mainPageLinkDisabled: PropTypes.bool
 };
 
 export default Header;
