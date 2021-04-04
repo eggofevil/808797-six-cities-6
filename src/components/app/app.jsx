@@ -1,5 +1,7 @@
 import React from 'react';
+import {Redirect} from 'react-router';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import Main from './main/main.jsx';
 import Room from './room/room.jsx';
@@ -8,7 +10,9 @@ import Favorites from './favorites/favorites.jsx';
 
 import TestComponent from './test-component/test-component-5.jsx';
 
-const App = () => {
+import authStatePropTypes from '../prop-types/authstate.proptypes.js';
+
+const App = ({authState}) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -16,11 +20,19 @@ const App = () => {
           <Main />
         </Route>
         <Route exact path="/login">
-          <SignIn />
+          {authState ?
+            <Redirect to="/" />
+            :
+            <SignIn />
+          }
         </Route>
         <Route exact path="/offer:id" render={(serviceProps) => (<Room state={serviceProps.location.state} />)} />
         <Route exact path="/favorites">
-          <Favorites />
+          {authState ?
+            <Favorites />
+            :
+            <Redirect to="/login" />
+          }
         </Route>
         <Route exact path="/test">
           <TestComponent />
@@ -30,4 +42,11 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
+
+App.propTypes = {
+  authState: authStatePropTypes
+};
+
+export {App};
+export default connect(mapStateToProps)(App);
