@@ -38,8 +38,8 @@ export const setFavorites = (favorites) => ({
   payload: favorites
 });
 
-export const changeOffer = (oldOffer, newOffer) => ({
+export const changeOffer = (offerId, offer) => ({
   type: CHANGE_OFFER,
-  oldOffer,
-  newOffer
+  offerId,
+  offer
 });

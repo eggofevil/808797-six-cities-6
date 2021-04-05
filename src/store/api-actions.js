@@ -53,7 +53,6 @@ export const authUser = (credentials) => (dispatch, _getState, api) => (
   api.post(`/login`, credentials)
     .then((data) => {
       dispatch(setAuthState(data.data));
-      dispatch(getFavorites());
       return false;
     })
 );
@@ -62,6 +61,7 @@ export const postReview = (offerId, requestBody, onResponse) => (dispatch, _getS
   api.post(`/comments/${offerId}`, requestBody)
     .then(() => {
       const message = `Yor review is posted! Thank you for your review!`;
+      dispatch(getOfferReviews(offerId));
       onResponse(message);
     }, (error) => {
       const message = `Something went wrong, please try again later... ${error}`;
@@ -69,11 +69,12 @@ export const postReview = (offerId, requestBody, onResponse) => (dispatch, _getS
     })
 );
 
-export const postBookmarked = (offer, status) => (dispatch, _getState, api) => (
-  api.post(`/favorite/${offer.id}/${status}`)
+export const postBookmarked = (offerId, status) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${offerId}/${status}`)
     .then(({data}) => {
-      // console.log(data);
-      dispatch(changeOffer(offer, data));
+      dispatch(changeOffer(offerId, data));
+      dispatch(getOffer(offerId));
+      dispatch(getFavorites());
     }, (error) => {
       console.log(error);
     })

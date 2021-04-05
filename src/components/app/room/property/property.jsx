@@ -36,7 +36,7 @@ const Property = ({offer, authState}) => {
             <h1 className="property__name">
               {offer.title}
             </h1>
-            <BookmarkButton location="property" offer={offer} />
+            <BookmarkButton buttonLocation="property" offer={offer} />
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">

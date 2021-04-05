@@ -15,7 +15,6 @@ const Room = ({offer, offerId, nearbyOffers}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(offerId);
     dispatch(getOffer(Number(offerId)));
   }, [offerId]);
 

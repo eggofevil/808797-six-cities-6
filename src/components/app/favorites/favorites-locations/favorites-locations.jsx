@@ -1,23 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Header from '../../shared/header/header.jsx';
-import Footer from '../../shared/footer/footer.jsx';
+import OfferCard from '../../shared/offer-card/offer-card.jsx';
 
-const FavoritesLocations = () => {
+import offerPropTypes from '../../../prop-types/offer.proptypes.js';
+
+const FavoritesLocations = ({cityName, offers}) => {
+  const offerCardArticleClassName = `favorites__card place-card`;
+  const offerCardDivClassName = `favorites__image-wrapper`;
   return (
-    <div className="page">
-      <Header />
-      <main className="page__main page__main--favorites">
-        <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-
-          </section>
+    <li className="favorites__locations-items">
+      <div className="favorites__locations locations locations--current">
+        <div className="locations__item">
+          <a className="locations__item-link" href="#">
+            <span>{cityName}</span>
+          </a>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+      <div className="favorites__places">
+        {offers.map((offer, i) => (
+          <OfferCard
+            key={`offer-${i}`}
+            offerCardArticleClassName={offerCardArticleClassName}
+            offerCardDivClassName={offerCardDivClassName}
+            offer={offer}
+          />
+        ))}
+      </div>
+    </li>
   );
+};
+
+FavoritesLocations.propTypes = {
+  cityName: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes)
 };
 
 export default FavoritesLocations;

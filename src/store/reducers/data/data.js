@@ -47,10 +47,9 @@ const data = (state = initialState, action) => {
   case CHANGE_OFFER:
     return extend(state, {
       offers: (() => {
-        const newOffers = state.offers.slice();
-        const index = newOffers.indexOf(action.oldOffer);
-        newOffers[index] = action.newOffer;
-        return newOffers;
+        const offers = state.offers.slice();
+        offers[offers.findIndex((offer) => offer.id === action.offerId)] = action.offer;
+        return offers;
       })()
     });
   default:

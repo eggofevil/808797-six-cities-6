@@ -8,14 +8,14 @@ import {postBookmarked} from '../../../../store/api-actions.js';
 import authStatePropTypes from '../../../prop-types/authstate.proptypes.js';
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
-function BookmarkButton({location, authState, offer}) {
+function BookmarkButton({buttonLocation, authState, offer}) {
   const history = useHistory();
   const dispatch = useDispatch();
   const buttonClassName = offer.is_favorite && authState ?
-    `${location}__bookmark-button ${location}__bookmark-button--active button`
+    `${buttonLocation}__bookmark-button ${buttonLocation}__bookmark-button--active button`
     :
-    `${location}__bookmark-button button`;
-  const iconClassName = `${location}__bookmark-icon`;
+    `${buttonLocation}__bookmark-button button`;
+  const iconClassName = `${buttonLocation}__bookmark-icon`;
   const ICON_DIMENSIONS = {
     'property': {
       width: 31,
@@ -32,7 +32,7 @@ function BookmarkButton({location, authState, offer}) {
       history.push(`/login`);
     } else {
       const activeStatus = offer.is_favorite ? 0 : 1;
-      dispatch(postBookmarked(offer, activeStatus));
+      dispatch(postBookmarked(offer.id, activeStatus));
     }
   }
 
@@ -40,8 +40,8 @@ function BookmarkButton({location, authState, offer}) {
     <button className={buttonClassName} type="button" onClick={handleClick}>
       <svg
         className={iconClassName}
-        width={ICON_DIMENSIONS[location].width}
-        height={ICON_DIMENSIONS[location].height}
+        width={ICON_DIMENSIONS[buttonLocation].width}
+        height={ICON_DIMENSIONS[buttonLocation].height}
       >
         <use xlinkHref="#icon-bookmark" />
       </svg>
@@ -53,7 +53,7 @@ function BookmarkButton({location, authState, offer}) {
 const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
 
 BookmarkButton.propTypes = {
-  location: PropTypes.string.isRequired,
+  buttonLocation: PropTypes.string.isRequired,
   authState: authStatePropTypes,
   offer: offerPropTypes.isRequired
 };
