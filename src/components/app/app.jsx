@@ -7,6 +7,7 @@ import Main from './main/main.jsx';
 import Room from './room/room.jsx';
 import SignIn from './sign-in/sign-in.jsx';
 import Favorites from './favorites/favorites.jsx';
+import NoSuchPage from './no-such-page/no-such-page.jsx';
 
 import TestComponent from './test-component/test-component-5.jsx';
 
@@ -36,6 +37,9 @@ const App = ({authState}) => {
         </Route>
         <Route exact path="/test">
           <TestComponent />
+        </Route>
+        <Route path="*">
+            <NoSuchPage />
         </Route>
       </Switch>
     </BrowserRouter>

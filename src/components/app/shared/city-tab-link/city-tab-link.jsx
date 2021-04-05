@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import {setCurrentCity} from '../../../../../store/reducers/data/action-creator.js';
+import {setCurrentCity} from '../../../../store/reducers/data/action-creator.js';
 
 const CityTabLink = ({cityName}) => {
   const dispatch = useDispatch();
@@ -11,9 +11,11 @@ const CityTabLink = ({cityName}) => {
   const handleClick = () => dispatch(setCurrentCity(cityName));
 
   return (
-    <Link className="locations__item-link" to="/" onClick={handleClick}>
-      <span>{cityName}</span>
-    </Link>
+    <div className="locations__item">
+      <Link className="locations__item-link" to="/" onClick={handleClick}>
+        <span>{cityName}</span>
+      </Link>
+    </div>
   );
 };
 
