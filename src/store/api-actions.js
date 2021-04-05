@@ -1,4 +1,4 @@
-import {setOffers, setCurrentCity, setNearbyOffers, setOfferReviews, setFavorites} from './reducers/data/action-creator.js';
+import {setOffers, setCurrentCity, setNearbyOffers, setOfferReviews, setFavorites, changeOffer} from './reducers/data/action-creator.js';
 import {setAuthState} from './reducers/logic/action-creator.js';
 
 const FIRST_OFFER_INDEX = 0;
@@ -28,7 +28,6 @@ export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
 export const getFavorites = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
     .then(({data}) => {
-      console.log(data);
       dispatch(setFavorites(data));
     }, (error) => {
       console.log(error);
@@ -52,5 +51,15 @@ export const postReview = (offerId, requestBody, onResponse) => (dispatch, _getS
     }, (error) => {
       const message = `Something went wrong, please try again later... ${error}`;
       onResponse(message);
+    })
+);
+
+export const postBookmarked = (offer, status) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${offer.id}/${status}`)
+    .then(({data}) => {
+      // console.log(data);
+      dispatch(changeOffer(offer, data));
+    }, (error) => {
+      console.log(error);
     })
 );

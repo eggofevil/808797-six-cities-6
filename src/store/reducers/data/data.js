@@ -1,5 +1,5 @@
 import {extend} from '../../../utils';
-import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS, SET_FAVORITES} from './actions.js';
+import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS, SET_FAVORITES, CHANGE_OFFER} from './actions.js';
 
 const initialState = {
   offers: [],
@@ -30,6 +30,15 @@ const data = (state = initialState, action) => {
   case SET_FAVORITES:
     return extend(state, {
       favorites: action.payload
+    });
+  case CHANGE_OFFER:
+    return extend(state, {
+      offers: (() => {
+        const newOffers = state.offers.slice();
+        const index = newOffers.indexOf(action.oldOffer);
+        newOffers[index] = action.newOffer;
+        return newOffers;
+      })()
     });
   default:
     return state;

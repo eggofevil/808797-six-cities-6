@@ -1,4 +1,4 @@
-import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS, SET_FAVORITES} from './actions.js';
+import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS, SET_FAVORITES, CHANGE_OFFER} from './actions.js';
 
 export const setOffers = (offers) => ({
   type: SET_OFFERS,
@@ -23,4 +23,10 @@ export const setOfferReviews = (offerReviews) => ({
 export const setFavorites = (favorites) => ({
   type: SET_FAVORITES,
   payload: favorites
+});
+
+export const changeOffer = (oldOffer, newOffer) => ({
+  type: CHANGE_OFFER,
+  oldOffer,
+  newOffer
 });

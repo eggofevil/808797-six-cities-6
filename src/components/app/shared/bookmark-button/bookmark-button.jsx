@@ -1,8 +1,21 @@
 import React from 'react';
+import {connect, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function BookmarkButton({location}) {
-  const elementClassName = `${location}__bookmark-`;
+import {postBookmarked} from '../../../../store/api-actions.js';
+
+import authStatePropTypes from '../../../prop-types/authstate.proptypes.js';
+import offerPropTypes from '../../../prop-types/offer.proptypes.js';
+
+function BookmarkButton({location, authState, offer}) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const buttonClassName = offer.is_favorite && authState ?
+    `${location}__bookmark-button ${location}__bookmark-button--active button`
+    :
+    `${location}__bookmark-button button`;
+  const iconClassName = `${location}__bookmark-icon`;
   const ICON_DIMENSIONS = {
     'property': {
       width: 31,
@@ -14,10 +27,19 @@ function BookmarkButton({location}) {
     }
   };
 
+  function handleClick() {
+    if (!authState) {
+      history.push(`/login`);
+    } else {
+      const activeStatus = offer.is_favorite ? 0 : 1;
+      dispatch(postBookmarked(offer, activeStatus));
+    }
+  }
+
   return (
-    <button className={`${elementClassName}button button`} type="button">
+    <button className={buttonClassName} type="button" onClick={handleClick}>
       <svg
-        className={`${elementClassName}icon`}
+        className={iconClassName}
         width={ICON_DIMENSIONS[location].width}
         height={ICON_DIMENSIONS[location].height}
       >
@@ -28,8 +50,13 @@ function BookmarkButton({location}) {
   );
 }
 
+const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
+
 BookmarkButton.propTypes = {
-  location: PropTypes.string.isRequired
+  location: PropTypes.string.isRequired,
+  authState: authStatePropTypes,
+  offer: offerPropTypes.isRequired
 };
 
-export default BookmarkButton;
+export {BookmarkButton};
+export default connect(mapStateToProps)(BookmarkButton);
