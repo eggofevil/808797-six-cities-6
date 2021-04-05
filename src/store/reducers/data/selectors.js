@@ -3,20 +3,20 @@ import {createSelector} from 'reselect';
 import {sortArrayByKeyValue} from '../../../utils.js';
 import {SortingTypes} from '../../../const.js';
 
-export const selectCurrentCityName = (state) => {
-  return state.DATA.currentCityName;
+export const selectCurrentCityName = ({DATA}) => {
+  return DATA.currentCityName;
 };
 
-export const selectOffers = (state) => {
-  return state.DATA.offers;
+export const selectOffers = ({DATA}) => {
+  return DATA.offers;
 };
 
-export const selectSortingType = (state) => {
-  return state.LOGIC.sortingType;
+export const selectSortingType = ({LOGIC}) => {
+  return LOGIC.sortingType;
 };
 
-export const selectOfferReviews = (state) => {
-  return state.DATA.offerReviews;
+export const selectOfferReviews = ({DATA}) => {
+  return DATA.offerReviews;
 };
 
 export const selectCityOffers = createSelector(
