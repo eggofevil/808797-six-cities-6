@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CityTabLink from './city-tab-link/city-tab-link.jsx';
 import OfferCard from '../../shared/offer-card/offer-card.jsx';
 
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
@@ -12,9 +13,7 @@ const FavoritesLocations = ({cityName, offers}) => {
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <a className="locations__item-link" href="#">
-            <span>{cityName}</span>
-          </a>
+          <CityTabLink cityName={cityName} />
         </div>
       </div>
       <div className="favorites__places">
