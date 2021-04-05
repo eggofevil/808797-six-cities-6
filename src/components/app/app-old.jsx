@@ -26,7 +26,7 @@ const App = ({authState}) => {
             <SignIn />
           }
         </Route>
-        <Route exact path="/offer:id" render={(serviceProps) => (<Room offerId={serviceProps.match.params.id} />)} />
+        <Route exact path="/offer:id" render={(serviceProps) => (<Room state={serviceProps.location.state} />)} />
         <Route exact path="/favorites">
           {authState ?
             <Favorites />

@@ -1,4 +1,12 @@
-import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS, SET_FAVORITES, CHANGE_OFFER} from './actions.js';
+import {
+  SET_OFFERS,
+  SET_CURRENT_CITY,
+  SET_CURRENT_OFFER,
+  SET_NEARBY_OFFERS,
+  SET_OFFER_REVIEWS,
+  SET_FAVORITES,
+  CHANGE_OFFER
+} from './actions.js';
 
 export const setOffers = (offers) => ({
   type: SET_OFFERS,
@@ -8,6 +16,11 @@ export const setOffers = (offers) => ({
 export const setCurrentCity = (cityName) => ({
   type: SET_CURRENT_CITY,
   payload: cityName
+});
+
+export const setCurrentOffer = (offer) => ({
+  type: SET_CURRENT_OFFER,
+  payload: offer
 });
 
 export const setNearbyOffers = (nearbyOffers) => ({

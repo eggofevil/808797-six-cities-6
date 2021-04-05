@@ -1,9 +1,18 @@
 import {extend} from '../../../utils';
-import {SET_OFFERS, SET_CURRENT_CITY, SET_NEARBY_OFFERS, SET_OFFER_REVIEWS, SET_FAVORITES, CHANGE_OFFER} from './actions.js';
+import {
+  SET_OFFERS,
+  SET_CURRENT_CITY,
+  SET_CURRENT_OFFER,
+  SET_NEARBY_OFFERS,
+  SET_OFFER_REVIEWS,
+  SET_FAVORITES,
+  CHANGE_OFFER
+} from './actions.js';
 
 const initialState = {
   offers: [],
   currentCityName: `Amsterdam`,
+  currentOffer: null,
   nearbyOffers: [],
   offerReviews: [],
   favorites: []
@@ -18,6 +27,10 @@ const data = (state = initialState, action) => {
   case SET_CURRENT_CITY:
     return extend(state, {
       currentCityName: action.payload,
+    });
+  case SET_CURRENT_OFFER:
+    return extend(state, {
+      currentOffer: action.payload,
     });
   case SET_NEARBY_OFFERS:
     return extend(state, {

@@ -1,4 +1,12 @@
-import {setOffers, setCurrentCity, setNearbyOffers, setOfferReviews, setFavorites, changeOffer} from './reducers/data/action-creator.js';
+import {
+  setOffers,
+  setCurrentCity,
+  setCurrentOffer,
+  setNearbyOffers,
+  setOfferReviews,
+  setFavorites,
+  changeOffer
+} from './reducers/data/action-creator.js';
 import {setAuthState} from './reducers/logic/action-creator.js';
 
 const FIRST_OFFER_INDEX = 0;
@@ -8,6 +16,13 @@ export const getHotels = () => (dispatch, _getState, api) => (
     .then(({data}) => {
       dispatch(setOffers(data));
       dispatch(setCurrentCity(data[FIRST_OFFER_INDEX].city.name));
+    })
+);
+
+export const getOffer = (offerId) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${offerId}`)
+    .then(({data}) => {
+      dispatch(setCurrentOffer(data));
     })
 );
 
