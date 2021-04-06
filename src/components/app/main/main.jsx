@@ -1,17 +1,21 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, connect} from 'react-redux';
 import Header from '../shared/header/header.jsx';
 import CitiesPane from './cities-pane/cities-pane.jsx';
 import Cities from './cities/cities.jsx';
+import PropTypes from 'prop-types';
 
 import {getHotels} from '../../../store/api-actions.js';
+import offerPropTypes from '../../prop-types/offer.proptypes.js';
 
-const Main = () => {
-  const dispatch = useDispatch();
+const Main = ({offers}) => {
+  if (!offers.length) {
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getHotels());
-  }, []);
+    useEffect(() => {
+      dispatch(getHotels());
+    }, []);
+  }
 
   return (
     <div className="page page--gray page--main">
@@ -25,4 +29,10 @@ const Main = () => {
   );
 };
 
-export default Main;
+const mapStateToProps = ({DATA}) =>({offers: DATA.offers});
+
+Main.propTypes = {
+  offers: PropTypes.arrayOf(offerPropTypes)
+};
+
+export default connect(mapStateToProps)(Main);
