@@ -40,6 +40,8 @@ export const selectSortedCityOffers = createSelector(
   }
 );
 
+// test request
+
 export const selectSortedOfferReviews = createSelector(
   [selectOfferReviews],
   (offerReviews) => offerReviews.slice().sort(CompareFunction[SortingType.DATE_NEWEST_TO_OLDEST])
