@@ -10,8 +10,6 @@ import SignOut from './sign-out/sign-out.jsx';
 import Favorites from './favorites/favorites.jsx';
 import NoSuchPage from './no-such-page/no-such-page.jsx';
 
-import TestComponent from './test-component/test-component-5.jsx';
-
 import authStatePropTypes from '../prop-types/authstate.proptypes.js';
 
 const App = ({authState}) => {
@@ -39,9 +37,6 @@ const App = ({authState}) => {
       </Route>
       <Route exact path="/logout">
         <SignOut />
-      </Route>
-      <Route exact path="/test">
-        <TestComponent />
       </Route>
       <Route path="*">
         <NoSuchPage />
