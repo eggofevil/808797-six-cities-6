@@ -14,6 +14,13 @@ const SortingTypes = {
   RATING: `Top rated first`
 };
 
+const APIRoutes = {
+  LOGIN: `/login`,
+  OFFERS: `/hotels`,
+  REVIEWS: `/comments`,
+  FAVORITES: `/favorite`
+};
+
 const RATING_BAR_DIVISION = 20;
 
-export {CityNames, SortingTypes, RATING_BAR_DIVISION};
+export {CityNames, SortingTypes, RATING_BAR_DIVISION, APIRoutes};
