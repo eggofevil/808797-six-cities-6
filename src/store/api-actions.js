@@ -1,6 +1,5 @@
 import {
   setOffers,
-  setCurrentCity,
   setCurrentOffer,
   setNearbyOffers,
   setOfferReviews,
@@ -10,13 +9,23 @@ import {
 import {APIRoutes} from '../const.js';
 import {setAuthState} from './reducers/logic/action-creator.js';
 
-const FIRST_OFFER_INDEX = 0;
-
 export const authUser = (credentials) => (dispatch, _getState, api) => (
   api.post(APIRoutes.LOGIN, credentials)
     .then((data) => {
       dispatch(setAuthState(data.data));
       return false;
+    })
+    .catch((error) => {
+      console(error);
+    })
+);
+
+export const getAuthState = () => (dispatch, _getState, api) => (
+  api.get(APIRoutes.LOGIN)
+    .then((data) => {
+      dispatch(setAuthState(data.data));
+    })
+    .catch(() => {
     })
 );
 
@@ -24,7 +33,6 @@ export const getHotels = () => (dispatch, _getState, api) => (
   api.get(APIRoutes.OFFERS)
     .then(({data}) => {
       dispatch(setOffers(data));
-      dispatch(setCurrentCity(data[FIRST_OFFER_INDEX].city.name));
     })
 );
 
