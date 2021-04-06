@@ -6,6 +6,7 @@ import {
   setCurrentOffer,
   setNearbyOffers,
   setOfferReviews,
+  setFavorites,
   changeOffer
 } from './reducers/data/action-creator.js';
 import {setAuthState} from './reducers/logic/action-creator.js';
@@ -44,8 +45,9 @@ export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
       dispatch(setOfferReviews(data));
     })
 );
-
+/*
 export const getFavorites = () => (dispatch, _getState, api) => (
+
   api.get(`/favorit`)
     .then((response) => {
       console.log(response);
@@ -56,8 +58,7 @@ export const getFavorites = () => (dispatch, _getState, api) => (
       console.log(error.response.status);
     })
 );
-
-/*
+*/
 export const getFavorites = () => (dispatch, _getState, api) => (
   api.get(`/favorit`)
     .then(({data}) => {
@@ -66,7 +67,6 @@ export const getFavorites = () => (dispatch, _getState, api) => (
       console.log(err);
     })
 );
-*/
 
 export const authUser = (credentials) => (dispatch, _getState, api) => (
   api.post(`/login`, credentials)
