@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 import {SortingType} from '../../../const.js';
-import {sortArrayOfObjectsByKey} from '../../../utils.js';
+import {CompareFunction} from './compare-functions.js';
 
 export const selectCurrentCityName = ({DATA}) => {
   return DATA.currentCityName;
@@ -26,13 +26,14 @@ export const selectCityOffers = createSelector(
 export const selectSortedCityOffers = createSelector(
   [selectCityOffers, selectSortingType],
   (cityOffers, sortingType) => {
+    const offers = cityOffers.slice();
     switch (sortingType) {
     case SortingType.PRICE_HIGH_TO_LOW:
-      return sortArrayOfObjectsByKey(cityOffers, `price`).reverse();
+      return offers.sort(CompareFunction[SortingType.PRICE_HIGH_TO_LOW]);
     case SortingType.PRICE_LOW_TO_HIGH:
-      return sortArrayOfObjectsByKey(cityOffers, `price`);
+      return offers.sort(CompareFunction[SortingType.PRICE_LOW_TO_HIGH]);
     case SortingType.RATING:
-      return sortArrayOfObjectsByKey(cityOffers, `price`).reverse();
+      return offers.sort(CompareFunction[SortingType.RATING]);
     default:
       return cityOffers;
     }
@@ -41,5 +42,5 @@ export const selectSortedCityOffers = createSelector(
 
 export const selectSortedOfferReviews = createSelector(
   [selectOfferReviews],
-  (offerReviews) => sortArrayOfObjectsByKey(offerReviews, `date`).reverse()
+  (offerReviews) => offerReviews.slice().sort(CompareFunction[SortingType.DATE_NEWEST_TO_OLDEST])
 );

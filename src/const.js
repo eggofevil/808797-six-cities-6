@@ -11,7 +11,8 @@ const SortingType = {
   POPULARITY: `Popular`,
   PRICE_LOW_TO_HIGH: `Price: low to high`,
   PRICE_HIGH_TO_LOW: `Price: high to low`,
-  RATING: `Top rated first`
+  RATING: `Top rated first`,
+  DATE: `Newest first`
 };
 
 const APIRoute = {
