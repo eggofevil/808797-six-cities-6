@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "axios": "0.21.1",
-    "history": "5.0.0",
     "leaflet": "1.7.1",
     "react": "16.14.0",
     "react-alert": "7.0.2",
