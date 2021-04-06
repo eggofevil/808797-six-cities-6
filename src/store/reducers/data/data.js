@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   offers: [],
-  currentCityName: `Amsterdam`,
+  currentCityName: `Paris`,
   currentOffer: null,
   nearbyOffers: [],
   offerReviews: [],

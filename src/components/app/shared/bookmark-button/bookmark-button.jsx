@@ -8,7 +8,7 @@ import {postBookmarked} from '../../../../store/api-actions.js';
 import authStatePropTypes from '../../../prop-types/authstate.proptypes.js';
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
-function BookmarkButton({buttonLocation, authState, offer}) {
+const BookmarkButton = ({buttonLocation, authState, offer}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const buttonClassName = offer.is_favorite && authState ?
@@ -27,14 +27,14 @@ function BookmarkButton({buttonLocation, authState, offer}) {
     }
   };
 
-  function handleClick() {
+  const handleClick = () => {
     if (!authState) {
       history.push(`/login`);
     } else {
       const activeStatus = offer.is_favorite ? 0 : 1;
       dispatch(postBookmarked(offer.id, activeStatus));
     }
-  }
+  };
 
   return (
     <button className={buttonClassName} type="button" onClick={handleClick}>
@@ -48,7 +48,7 @@ function BookmarkButton({buttonLocation, authState, offer}) {
       <span className="visually-hidden">To bookmarks</span>
     </button>
   );
-}
+};
 
 const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
 

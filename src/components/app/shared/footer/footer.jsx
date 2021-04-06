@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer">
       <Link className="footer__logo-link" to="/">
@@ -9,6 +9,6 @@ function Footer() {
       </Link>
     </footer>
   );
-}
+};
 
 export default Footer;

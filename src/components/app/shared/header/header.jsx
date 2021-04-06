@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import UserPane from './user-pane/user-pane.jsx';
 
-function Header({mainPageLinkDisabled}) {
+const Header = ({mainPageLinkDisabled}) => {
   return (
     <header className="header">
       <div className="container">
@@ -31,7 +31,7 @@ function Header({mainPageLinkDisabled}) {
       </div>
     </header>
   );
-}
+};
 
 Header.propTypes = {
   mainPageLinkDisabled: PropTypes.bool

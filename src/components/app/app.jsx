@@ -39,7 +39,7 @@ const App = ({authState}) => {
           <TestComponent />
         </Route>
         <Route path="*">
-            <NoSuchPage />
+          <NoSuchPage />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -10,17 +10,17 @@ const SignInForm = () => {
     password: ``
   });
 
-  function handleChange(evt) {
+  const handleChange = (evt) => {
     evt.persist();
     setState((previousState) => {
       return {...previousState, [evt.target.name]: evt.target.value};
     });
-  }
+  };
 
-  function handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(authUser(state));
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="login__form form">

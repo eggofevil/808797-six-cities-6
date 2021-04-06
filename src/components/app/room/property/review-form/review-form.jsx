@@ -21,15 +21,15 @@ const ReviewForm = ({offerId}) => {
   const submitDisabled = userInput.rating && (userInput.comment.length >= 50) && (userInput.comment.length <= 300) ?
     false : true;
 
-  function handleChange(evt) {
+  const handleChange = (evt) => {
     evt.persist();
     setUserInput((previousState) => ({
       ...previousState,
       [evt.target.name]: evt.target.value
     }));
-  }
+  };
 
-  function resetForm() {
+  const resetForm = () => {
     setUserInput({
       comment: ``,
       rating: ``
@@ -38,19 +38,19 @@ const ReviewForm = ({offerId}) => {
     ratingInputs.map((ratingInput) => {
       ratingInput.checked = ``;
     });
-  }
+  };
 
-  function handleSubmit(evt) {
-    function onResponse(message) {
+  const handleSubmit = (evt) => {
+    const onResponse = (message) => {
       alert.show(message);
       setFormState({disabled: false});
-    }
+    };
 
     evt.preventDefault();
     setFormState({disabled: true});
     resetForm();
     dispatch(postReview(offerId, userInput, onResponse));
-  }
+  };
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>
