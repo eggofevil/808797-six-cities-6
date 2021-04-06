@@ -13,10 +13,8 @@ export const authUser = (credentials) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, credentials)
     .then((data) => {
       dispatch(setAuthState(data.data));
-      return false;
     })
-    .catch((error) => {
-      console(error);
+    .catch(() => {
     })
 );
 

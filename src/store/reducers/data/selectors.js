@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect';
 import {SortingType} from '../../../const.js';
+import {sortArrayOfObjectsByKey} from '../../../utils.js';
 
 export const selectCurrentCityName = ({DATA}) => {
   return DATA.currentCityName;
@@ -21,11 +22,6 @@ export const selectCityOffers = createSelector(
   [selectOffers, selectCurrentCityName],
   (offers, currentCityName) => offers.filter((offer) => offer.city.name === currentCityName)
 );
-
-const sortArrayOfObjectsByKey = (offers, key) => {
-  offers = offers.slice();
-  return offers.sort((offer1, offer2) => offer1[key] - offer2[key]);
-};
 
 export const selectSortedCityOffers = createSelector(
   [selectCityOffers, selectSortingType],
