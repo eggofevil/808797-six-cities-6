@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import Main from './main/main.jsx';
 import Room from './room/room.jsx';
 import SignIn from './sign-in/sign-in.jsx';
+import SignOut from './sign-out/sign-out.jsx';
 import Favorites from './favorites/favorites.jsx';
 import NoSuchPage from './no-such-page/no-such-page.jsx';
 
@@ -35,6 +36,9 @@ const App = ({authState}) => {
           :
           <Redirect to="/login" />
         }
+      </Route>
+      <Route exact path="/logout">
+        <SignOut />
       </Route>
       <Route exact path="/test">
         <TestComponent />

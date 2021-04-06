@@ -4,8 +4,8 @@ import {Provider as ReactReduxProvider} from 'react-redux';
 import {createAPI} from './services/api.js';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import {persistStore, persistReducer} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import {persistStore} from 'redux-persist';
+
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {composeWithDevTools} from 'redux-devtools-extension';
@@ -13,13 +13,11 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider as AlertProvider} from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
-import rootReducer from './store/reducers/root-reducer.js';
+import persistedReducer from './store/persist-config.js';
 import App from './components/app/app.jsx';
 import {getHotels} from './store/api-actions.js';
 
 const api = createAPI();
-
-const persistedReducer = persistReducer({key: `root`, storage}, rootReducer);
 
 const store = createStore(
   persistedReducer,
