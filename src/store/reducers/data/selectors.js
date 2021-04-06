@@ -1,6 +1,4 @@
 import {createSelector} from 'reselect';
-
-import {sortArrayByKeyValue} from '../../../utils.js';
 import {SortingType} from '../../../const.js';
 
 export const selectCurrentCityName = ({DATA}) => {
@@ -24,16 +22,21 @@ export const selectCityOffers = createSelector(
   (offers, currentCityName) => offers.filter((offer) => offer.city.name === currentCityName)
 );
 
+const sortArrayOfObjectsByKey = (offers, key) => {
+  offers = offers.slice();
+  return offers.sort((offer1, offer2) => offer1[key] - offer2[key]);
+};
+
 export const selectSortedCityOffers = createSelector(
   [selectCityOffers, selectSortingType],
   (cityOffers, sortingType) => {
     switch (sortingType) {
     case SortingType.PRICE_HIGH_TO_LOW:
-      return sortArrayByKeyValue(cityOffers, `price`, `descending`);
+      return sortArrayOfObjectsByKey(cityOffers, `price`).reverse();
     case SortingType.PRICE_LOW_TO_HIGH:
-      return sortArrayByKeyValue(cityOffers, `price`, `ascending`);
+      return sortArrayOfObjectsByKey(cityOffers, `price`);
     case SortingType.RATING:
-      return sortArrayByKeyValue(cityOffers, `rating`, `descending`);
+      return sortArrayOfObjectsByKey(cityOffers, `price`).reverse();
     default:
       return cityOffers;
     }
@@ -42,5 +45,5 @@ export const selectSortedCityOffers = createSelector(
 
 export const selectSortedOfferReviews = createSelector(
   [selectOfferReviews],
-  (offerReviews) => sortArrayByKeyValue(offerReviews, `date`, `descending`)
+  (offerReviews) => sortArrayOfObjectsByKey(offerReviews, `date`).reverse()
 );
