@@ -1,15 +1,20 @@
+import {useAlert} from 'react-alert';
+
 import {
   setOffers,
   setCurrentCity,
   setCurrentOffer,
   setNearbyOffers,
   setOfferReviews,
-  setFavorites,
   changeOffer
 } from './reducers/data/action-creator.js';
 import {setAuthState} from './reducers/logic/action-creator.js';
 
 const FIRST_OFFER_INDEX = 0;
+
+const customMessage = (error) => {
+  return null;
+};
 
 export const getHotels = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
@@ -41,13 +46,27 @@ export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
 );
 
 export const getFavorites = () => (dispatch, _getState, api) => (
-  api.get(`/favorite`)
-    .then(({data}) => {
-      dispatch(setFavorites(data));
-    }, (error) => {
-      console.log(error);
+  api.get(`/favorit`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(Object.entries(error));
+      console.log(error.response.statusText);
+      console.log(error.response.status);
     })
 );
+
+/*
+export const getFavorites = () => (dispatch, _getState, api) => (
+  api.get(`/favorit`)
+    .then(({data}) => {
+      dispatch(setFavorites(data));
+    }, (err) => {
+      console.log(err);
+    })
+);
+*/
 
 export const authUser = (credentials) => (dispatch, _getState, api) => (
   api.post(`/login`, credentials)
