@@ -1,30 +1,86 @@
-import {setOffers, setCity} from './reducers/actions';
-import {createAPI} from '../services/api';
+import {
+  setOffers,
+  setCurrentOffer,
+  setNearbyOffers,
+  setOfferReviews,
+  setFavorites,
+  changeOffer
+} from './reducers/data/action-creator.js';
+import {APIRoute} from '../const.js';
+import {setAuthState} from './reducers/logic/action-creator.js';
 
-const api = createAPI();
+export const authUser = (credentials) => (dispatch, _getState, api) => (
+  api.post(APIRoute.LOGIN, credentials)
+    .then((data) => {
+      dispatch(setAuthState(data.data));
+    })
+    .catch(() => {
+    })
+);
 
-export const getOffers = () => (dispatch, _getState) => (
-  api.get(`/hotels`)
+export const getAuthState = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.LOGIN)
+    .then((data) => {
+      dispatch(setAuthState(data.data));
+    })
+    .catch(() => {
+    })
+);
+
+export const getHotels = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.OFFERS)
     .then(({data}) => {
-      const cityName = data[0].city.name;
-      dispatch(setCity(cityName));
       dispatch(setOffers(data));
     })
 );
 
-export const getReviews = (offerId, setReviews) => {
-  return api.get(`/comments/${offerId}`)
+export const getOffer = (offerId) => (dispatch, _getState, api) => (
+  api.get(APIRoute.OFFERS + `/${offerId}`)
     .then(({data}) => {
-      setReviews(data);
-    });
-};
-
-/*
-export const getReviews = (offerId) => (
-  api.get(`/comments/${offerId}`)
-    .then(({data}) => {
-      console.log(data);
-      return (data);
+      dispatch(setCurrentOffer(data));
     })
 );
-*/
+
+export const getOfferReviews = (offerId) => (dispatch, _getState, api) => (
+  api.get(APIRoute.REVIEWS + `/${offerId}`)
+    .then(({data}) => {
+      dispatch(setOfferReviews(data));
+    })
+);
+
+export const postReview = (offerId, requestBody, onResponse) => (dispatch, _getState, api) => (
+  api.post(APIRoute.REVIEWS + `/${offerId}`, requestBody)
+    .then(() => {
+      const message = `Yor review is posted! Thank you for your review!`;
+      dispatch(getOfferReviews(offerId));
+      onResponse(message);
+    }, (error) => {
+      const message = `Something went wrong, please try again later... ${error}`;
+      onResponse(message);
+    })
+);
+
+export const getNearbyOffers = (offerId) => (dispatch, _getState, api) => (
+  api.get(APIRoute.OFFERS + `/${offerId}/nearby`)
+    .then(({data}) => {
+      dispatch(setNearbyOffers(data));
+    })
+);
+
+export const getFavorites = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.FAVORITES)
+    .then(({data}) => {
+      dispatch(setFavorites(data));
+    }, () => {
+    })
+);
+
+export const postBookmarked = (offerId, status) => (dispatch, _getState, api) => (
+  api.post(APIRoute.FAVORITES + `/${offerId}/${status}`)
+    .then(({data}) => {
+      dispatch(changeOffer(offerId, data));
+      dispatch(getOffer(offerId));
+      dispatch(getFavorites());
+    }, () => {
+    })
+);

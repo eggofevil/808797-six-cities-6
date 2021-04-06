@@ -1,32 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider as ReactReduxProvider} from 'react-redux';
+import {createAPI} from './services/api.js';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import {BrowserRouter} from 'react-router-dom';
+import {Provider as AlertProvider} from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 
 import rootReducer from './store/reducers/root-reducer';
-import App from './components/app/app';
-// import {createAPI} from './services/api';
-import {getOffers} from './store/api-actions';
+import {getAuthState} from './store/api-actions.js';
+import App from './components/app/app.jsx';
 
-// const api = createAPI();
-// const store = createStore(rootReducer);
+const api = createAPI();
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(
-      thunk.withExtraArgument()
+      thunk.withExtraArgument(api)
     )
   )
 );
 
-store.dispatch(getOffers());
+store.dispatch(getAuthState());
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ReactReduxProvider store={store}>
+    <BrowserRouter>
+      <AlertProvider template={AlertTemplate}>
+        <App />
+      </AlertProvider>
+    </BrowserRouter>
+  </ReactReduxProvider>,
   document.getElementById(`root`)
 );

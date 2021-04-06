@@ -1,30 +1,51 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Redirect} from 'react-router';
+import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import Main from '../main/main';
-import SignIn from '../sign-in/sign-in';
-import Favorites from '../favorites/favorites';
-import Room from '../room/room';
+import Main from './main/main.jsx';
+import Room from './room/room.jsx';
+import SignIn from './sign-in/sign-in.jsx';
+import Favorites from './favorites/favorites.jsx';
+import NoSuchPage from './no-such-page/no-such-page.jsx';
 
-import TestComponent from '../test-component/test-component';
+import authStatePropTypes from '../prop-types/authstate.proptypes.js';
 
-const App = () => {
+const App = ({authState}) => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Main />
-        </Route>
-        <Route exact path="/login">
+    <Switch>
+      <Route exact path="/">
+        <Main />
+      </Route>
+      <Route exact path="/login">
+        {authState ?
+          <Redirect to="/" />
+          :
           <SignIn />
-        </Route>
-        <Route exact path="/favorites">
+        }
+      </Route>
+      <Route
+        exact path="/offer:id"
+        render={(serviceProps) => (<Room offerId={serviceProps.match.params.id} />)} />
+      <Route exact path="/favorites">
+        {authState ?
           <Favorites />
-        </Route>
-        <Route exact path="/offer:id" render={(serviceProps) => (<Room state={serviceProps.location.state} />)} />
-      </Switch>
-    </BrowserRouter>
+          :
+          <Redirect to="/login" />
+        }
+      </Route>
+      <Route path="*">
+        <NoSuchPage />
+      </Route>
+    </Switch>
   );
 };
 
-export default App;
+const mapStateToProps = ({LOGIC}) => ({authState: LOGIC.authState});
+
+App.propTypes = {
+  authState: authStatePropTypes
+};
+
+export {App};
+export default connect(mapStateToProps)(App);
