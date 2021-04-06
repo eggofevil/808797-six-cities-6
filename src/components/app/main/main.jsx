@@ -8,14 +8,11 @@ import PropTypes from 'prop-types';
 import {getHotels} from '../../../store/api-actions.js';
 import offerPropTypes from '../../prop-types/offer.proptypes.js';
 
-const Main = ({offers}) => {
-  if (!offers.length) {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      dispatch(getHotels());
-    }, []);
-  }
+const Main = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getHotels());
+  }, []);
 
   return (
     <div className="page page--gray page--main">

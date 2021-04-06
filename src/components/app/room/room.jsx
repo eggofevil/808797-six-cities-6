@@ -13,7 +13,6 @@ import offerPropTypes from '../../prop-types/offer.proptypes.js';
 
 const Room = ({offer, offerId, nearbyOffers}) => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getOffer(Number(offerId)));
   }, [offerId]);
@@ -24,7 +23,6 @@ const Room = ({offer, offerId, nearbyOffers}) => {
       dispatch(getOfferReviews(offerId));
     }
   }, [offer]);
-
   window.scroll(0, 0);
   if (offer) {
     return (

@@ -12,7 +12,7 @@ import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
 const OfferCard = ({offerCardArticleClassName, offerCardDivClassName, offer, changeActiveCard}) => {
   const offerLinkProps = {
-    pathname: `/offer${offer.id}`,
+    pathname: `/offer/${offer.id}`,
     state: {
       offer,
     }

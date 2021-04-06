@@ -10,7 +10,7 @@ export const CompareFunction = {
   [SortingType.PRICE_LOW_TO_HIGH]: (a, b) => {
     return a.price - b.price;
   },
-  [SortingType.DATE_NEWEST_TO_OLDEST]: (a, b) => {
-    return b.date - a.date;
+  DATE_NEWEST_TO_OLDEST: (a, b) => {
+    return Date.parse(b.date) - Date.parse(a.date);
   }
 };

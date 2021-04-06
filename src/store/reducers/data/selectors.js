@@ -40,9 +40,10 @@ export const selectSortedCityOffers = createSelector(
   }
 );
 
-// test request
-
 export const selectSortedOfferReviews = createSelector(
   [selectOfferReviews],
-  (offerReviews) => offerReviews.slice().sort(CompareFunction[SortingType.DATE_NEWEST_TO_OLDEST])
+  (offerReviews) => {
+    const reviews = offerReviews.slice();
+    return reviews.sort(CompareFunction.DATE_NEWEST_TO_OLDEST);
+  }
 );

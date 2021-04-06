@@ -23,7 +23,7 @@ const SortingPane = ({sortingType}) => {
       </span>
       <ul className={ulClassName}>
         {Object.values(SortingType).map((value, id) => (
-          <SortingTab key={`sortingOption-${id}`} value={value} active={value === sortingType} handleClick={handleClick} />
+          <SortingTab key={`sortingOption-${id}`} value={value} active={value === sortingType} onTabClick={handleClick} />
         ))}
       </ul>
     </form>
