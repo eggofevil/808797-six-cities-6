@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 
 import {sortArrayByKeyValue} from '../../../utils.js';
-import {SortingTypes} from '../../../const.js';
+import {SortingType} from '../../../const.js';
 
 export const selectCurrentCityName = ({DATA}) => {
   return DATA.currentCityName;
@@ -28,11 +28,11 @@ export const selectSortedCityOffers = createSelector(
   [selectCityOffers, selectSortingType],
   (cityOffers, sortingType) => {
     switch (sortingType) {
-    case SortingTypes.PRICE_HIGH_TO_LOW:
+    case SortingType.PRICE_HIGH_TO_LOW:
       return sortArrayByKeyValue(cityOffers, `price`, `descending`);
-    case SortingTypes.PRICE_LOW_TO_HIGH:
+    case SortingType.PRICE_LOW_TO_HIGH:
       return sortArrayByKeyValue(cityOffers, `price`, `ascending`);
-    case SortingTypes.RATING:
+    case SortingType.RATING:
       return sortArrayByKeyValue(cityOffers, `rating`, `descending`);
     default:
       return cityOffers;

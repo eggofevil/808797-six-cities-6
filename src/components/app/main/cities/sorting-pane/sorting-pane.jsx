@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {SortingTypes} from '../../../../../const.js';
+import {SortingType} from '../../../../../const.js';
 
 import SortingTab from './sorting-tab/sorting-tab.jsx';
 
@@ -22,7 +22,7 @@ const SortingPane = ({sortingType}) => {
         </svg>
       </span>
       <ul className={ulClassName}>
-        {Object.values(SortingTypes).map((value, id) => (
+        {Object.values(SortingType).map((value, id) => (
           <SortingTab key={`sortingOption-${id}`} value={value} active={value === sortingType} handleClick={handleClick} />
         ))}
       </ul>

@@ -1,4 +1,4 @@
-const CityNames = {
+const CityName = {
   PARIS: `Paris`,
   COLOGNE: `Cologne`,
   BRUSSELS: `Brussels`,
@@ -7,14 +7,14 @@ const CityNames = {
   DUSSELDORF: `Dusseldorf`
 };
 
-const SortingTypes = {
+const SortingType = {
   POPULARITY: `Popular`,
   PRICE_LOW_TO_HIGH: `Price: low to high`,
   PRICE_HIGH_TO_LOW: `Price: high to low`,
   RATING: `Top rated first`
 };
 
-const APIRoutes = {
+const APIRoute = {
   LOGIN: `/login`,
   OFFERS: `/hotels`,
   REVIEWS: `/comments`,
@@ -23,4 +23,4 @@ const APIRoutes = {
 
 const RATING_BAR_DIVISION = 20;
 
-export {CityNames, SortingTypes, RATING_BAR_DIVISION, APIRoutes};
+export {CityName, SortingType, RATING_BAR_DIVISION, APIRoute};

@@ -1,9 +1,9 @@
 import {extend} from '../../../utils';
 import {SET_SORTING_TYPE, SET_ACTIVE_CARD, SET_AUTH_STATE} from './actions.js';
-import {SortingTypes} from '../../../const';
+import {SortingType} from '../../../const';
 
 const initialState = {
-  sortingType: SortingTypes.POPULARITY,
+  sortingType: SortingType.POPULARITY,
   activeCard: null,
   authState: null
 };
