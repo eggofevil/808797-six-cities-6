@@ -5,9 +5,9 @@ import OfferCard from '../offer-card/offer-card.jsx';
 
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
-const OffersList = ({offers, offersListClassName, offerCardArticleClassName, offerCardDivClassName}) => {
+const OffersList = ({offers, offerCardArticleClassName, offerCardDivClassName}) => {
   return (
-    <div className={`places__list ` + offersListClassName}>
+    <>
       {offers.map((offer, i) => (
         <OfferCard
           key={`offer-${i}`}
@@ -16,13 +16,12 @@ const OffersList = ({offers, offersListClassName, offerCardArticleClassName, off
           offer={offer}
         />
       ))}
-    </div>
+    </>
   );
 };
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes.isRequired).isRequired,
-  offersListClassName: PropTypes.string.isRequired,
   offerCardArticleClassName: PropTypes.string.isRequired,
   offerCardDivClassName: PropTypes.string.isRequired,
 };

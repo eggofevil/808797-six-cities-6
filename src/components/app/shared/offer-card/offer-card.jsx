@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import BookmarkButton from '../bookmark-button/bookmark-button.jsx';
 
@@ -10,20 +10,18 @@ import {RATING_BAR_DIVISION} from '../../../../const.js';
 
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
-const OfferCard = ({offerCardArticleClassName, offerCardDivClassName, offer, changeActiveCard}) => {
+const OfferCard = ({offerCardArticleClassName, offerCardDivClassName, offer}) => {
+  const dispatch = useDispatch();
   const offerLinkProps = {
     pathname: `/offer/${offer.id}`,
-    state: {
-      offer,
-    }
   };
 
   const handleMouseEnter = () => {
-    changeActiveCard(offer);
+    dispatch(setActiveCard(offer));
   };
 
   const handleMouseLeave = () => {
-    changeActiveCard();
+    dispatch(setActiveCard());
   };
 
   const articleArguments = {
@@ -74,14 +72,6 @@ OfferCard.propTypes = {
   offerCardArticleClassName: PropTypes.string.isRequired,
   offerCardDivClassName: PropTypes.string.isRequired,
   offer: offerPropTypes.isRequired,
-  changeActiveCard: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  changeActiveCard(offer) {
-    dispatch(setActiveCard(offer));
-  }
-});
-
-export {OfferCard};
-export default connect(null, mapDispatchToProps)(OfferCard);
+export default OfferCard;

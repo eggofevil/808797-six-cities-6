@@ -41,12 +41,13 @@ const Room = ({offer, offerId, nearbyOffers}) => {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <OffersList
-                offers={nearbyOffers}
-                offersListClassName="near-places__list"
-                offerCardArticleClassName="near-places__card"
-                offerCardDivClassName="near-places__image-wrapper"
-              />
+              <div className="near-places__list places__list">
+                <OffersList
+                  offerCardArticleClassName="near-places__card"
+                  offerCardDivClassName="near-places__image-wrapper"
+                  offers={nearbyOffers}
+                />
+              </div>
             </section>
           </div>
         </main>

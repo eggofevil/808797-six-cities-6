@@ -10,12 +10,13 @@ import offerPropTypes from '../../../../prop-types/offer.proptypes.js';
 const SortedOffersList = ({sortedCityOffers}) => {
 
   return (
-    <OffersList
-      offersListClassName="cities__places-list tabs__content"
-      offerCardArticleClassName="cities__place-card"
-      offerCardDivClassName="cities__image-wrapper"
-      offers={sortedCityOffers}
-    />
+    <div className="cities__places-list tabs__content places__list">
+      <OffersList
+        offerCardArticleClassName="cities__place-card"
+        offerCardDivClassName="cities__image-wrapper"
+        offers={sortedCityOffers}
+      />
+    </div>
   );
 };
 

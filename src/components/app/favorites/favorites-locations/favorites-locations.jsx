@@ -2,27 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CityTabLink from '../../shared/city-tab-link/city-tab-link.jsx';
-import OfferCard from '../../shared/offer-card/offer-card.jsx';
+import OffersList from '../../shared/offers-list/offers-list.jsx';
 
 import offerPropTypes from '../../../prop-types/offer.proptypes.js';
 
 const FavoritesLocations = ({cityName, offers}) => {
-  const offerCardArticleClassName = `favorites__card place-card`;
-  const offerCardDivClassName = `favorites__image-wrapper`;
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <CityTabLink cityName={cityName} />
       </div>
       <div className="favorites__places">
-        {offers.map((offer, i) => (
-          <OfferCard
-            key={`offer-${i}`}
-            offerCardArticleClassName={offerCardArticleClassName}
-            offerCardDivClassName={offerCardDivClassName}
-            offer={offer}
-          />
-        ))}
+        <OffersList
+          offers={offers}
+          offerCardArticleClassName="favorites__card place-card"
+          offerCardDivClassName="favorites__image-wrapper"
+        />
       </div>
     </li>
   );
