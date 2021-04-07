@@ -3,11 +3,11 @@ import {Redirect} from 'react-router';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Main from './main/main.jsx';
-import Room from './room/room.jsx';
-import SignIn from './sign-in/sign-in.jsx';
-import Favorites from './favorites/favorites.jsx';
-import NoSuchPage from './no-such-page/no-such-page.jsx';
+import Main from '../main/main.jsx';
+import Room from '../room/room.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
+import Favorites from '../favorites/favorites.jsx';
+import NoSuchPage from '../no-such-page/no-such-page.jsx';
 
 import authStatePropTypes from '../prop-types/authstate.proptypes.js';
 
